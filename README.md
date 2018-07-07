@@ -1,5 +1,7 @@
 # REST-API
-This is a project to handle REST API request. The tech stack used is [MongoDB](https://docs.mongodb.com/v3.4/administration/install-community/), [Node.js](https://nodejs.org/en/) and [Express.js](https://expressjs.com/).
+ This is a project to learn how to handle REST API request. The tech stack used is [MongoDB](https://docs.mongodb.com/v3.4/administration/install-community/), [Node.js](https://nodejs.org/en/) and [Express.js](https://expressjs.com/).
+ 
+ Other software used for developing this project were [POSTMAN](https://www.getpostman.com/) for API development and [ROBO 3T](https://robomongo.org/) lightweight GUI for MongoDB 
 
 ## Instructions
 
