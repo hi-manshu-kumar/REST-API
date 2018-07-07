@@ -1,18 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const Ninja = require('../models/ninja')
+const Ninja = require('../models/ninja');
 
-//method = "/" route(callback function) = function(req,res)
+
 
 
 //get a list of ninjas from the db
-router.get('/ninjas',function(req,res){
-    Ninja.geoNear(
-        {type:'Point',coordinates:[parseFloat(req.query.lng),parseFloat(req.query.lat)]},
-        {maxDistance:1000000,spherical:true}
-    ).then(function(ninjas){
-        res.send(ninjas);
-    });
+router.get('/ninjas', function(req, res, next){
+    Ninja.aggregate().near({
+        near: {
+            'type': 'Point',
+            'coordinates': [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+        },
+        maxDistance: 100000,
+        spherical: true,
+        distanceField: 'dis'
+    }).then(ninjas => res.send(ninjas));
 });
 
 //post a list of ninjas from the db
@@ -26,8 +29,8 @@ router.post('/ninjas',function(req,res,next){
     }).catch(next);        
     
 });
-//put a list of ninjas from the db
 
+//update a list of ninjas from the db
 router.put('/ninjas/:id',function(req,res,next){
     Ninja.findByIdAndUpdate({_id:req.params.id},req.body).then(function(ninja){
         res.send(ninja);  
@@ -44,3 +47,6 @@ router.delete('/ninjas/:id',function(req,res,next){
 });
 
 module.exports = router;
+
+
+//method = "/" route(callback function) = function(req,res)
