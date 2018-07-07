@@ -15,8 +15,8 @@ router.get('/ninjas', function(req, res, next){
         maxDistance: 100000,
         spherical: true,
         distanceField: 'dis'
-    }).then(ninjas => res.send(ninjas));
-});
+    }).then(ninjas => res.send(ninjas)).catch(next);;
+})
 
 //post a list of ninjas from the db
 router.post('/ninjas',function(req,res,next){
@@ -31,19 +31,19 @@ router.post('/ninjas',function(req,res,next){
 });
 
 //update a list of ninjas from the db
-router.put('/ninjas/:id',function(req,res,next){
-    Ninja.findByIdAndUpdate({_id:req.params.id},req.body).then(function(ninja){
-        res.send(ninja);  
-    })
-});
+router.put('/ninjas/:id', function(req, res, next){
+    Ninja.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
+        Ninja.findOne({_id: req.params.id}).then(function(ninja){
+            res.send(ninja);
+        });
+    }).catch(next);
+})
 //Delete a list of ninjas from the db
 
-router.delete('/ninjas/:id',function(req,res,next){
-    Ninja.findByIdAndRemove({_id:req.params.id}).then(function(){
-        Ninja.findOne({_id:req.params.id}).then(function(ninja){
+router.delete('/ninjas/:id', function(req, res, next){
+    Ninja.findByIdAndRemove({_id: req.params.id}).then(function(ninja){
         res.send(ninja);
-        });
-    });
+    }).catch(next);
 });
 
 module.exports = router;
