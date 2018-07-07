@@ -9,13 +9,14 @@ const app = express();
 mongoose.connect('mongodb://localhost/ninjago');
 mongoose.Promise = global.Promise;
 
+//static middelware
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
 // route handlers
 //method = "/" route(callback function) = function(req,res)
 
-//initialise
+//initialise routes
 app.use('/api',require('./routes/api'));
 
 //error hnadling middleware
