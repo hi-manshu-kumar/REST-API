@@ -22,7 +22,7 @@ router.get('/ninjas', function(req, res, next){
 // we receive a post request where someone is going to attach some JSON data
 // to the body of that request
 // that JSON data is going to represent a new ninja with these different properties: name, rank and availability
-// once we receive it we're going to say ninja create - this is a mongoose method and this is the model so we're calling this create method on the model which is goijg to create a new instance of a ninja using the data that we receive from the body of the request
+// once we receive it we're going to say ninja create - this is a mongoose method and this is the model so we're calling this create method on the model which is going to create a new instance of a ninja using the data that we receive from the body of the request
 // it's going to save that datato the db for us and this is going to wait until the action is complete
 // once it is, is going to research what the ninja has saved to the db
 // then the function is going to fire with the response with that ninja

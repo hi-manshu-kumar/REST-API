@@ -28,6 +28,7 @@
             },
             render: function(){
                 var ninjas = this.state.ninjas;
+                console.log("value changed", ninjas);
                 ninjas = ninjas.map(function(ninja, index){
                     return(
                         <li key={index}>
